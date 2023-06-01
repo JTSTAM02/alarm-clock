@@ -1,1 +1,20 @@
+body {
+    background-color: silver;
+    text-align: center;
+}
 
+#demo {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(237, 218, 147);
+}
+
+.prettybutton {
+    color: black;
+    background-color: rgb(237, 218, 147);
+}
+
+#clock {
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+} 
