@@ -4,7 +4,7 @@
 ### Variables
 -Date and Time
 - Alarm On/Off
--Display Time
+- Display Time
 ### BEGIN
 #### INIT-see Variables
 * Need Set time for hours, minutes, and seconds as well as date
