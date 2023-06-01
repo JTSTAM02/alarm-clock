@@ -43,11 +43,11 @@ function getAlarmTimestamp() {
 }
 
 function setAlarm() {
-  const inputElement = document.getElementById('alarmtime');
-  alarmTime = inputElement.value;
+  const inputElement = document.getElementById('alarmtime'); // gives the input element for the alarm time
+  alarmTime = inputElement.value; //gets value from input box
   if (alarmTime) {
-    alarmTriggered= false;
-    alert("Alarm set for " + alarmTime);
+    alarmTriggered = false; 
+    alert("Alarm set for " + alarmTime); //alert that alarm has been set
   } else {
     alert("Please enter a valid alarm time.");
   }
