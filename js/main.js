@@ -14,7 +14,7 @@ function stopInterval() { // prevents getSeconds() from repeated execution and a
 function getSeconds() {
   let currentDateTime = new Date();
   let currentTimestamp = currentDateTime.getTime(); // Both give current date and time
-  let alarmTimestamp = getAlarmTime(); // captures date and time to be used in later function
+  let alarmTimestamp = getAlarmTimestamp();
 
   if (currentTimestamp >= alarmTimestamp && alarmTime && !alarmTriggered) {
     alarmTriggered= true;
