@@ -1,19 +1,19 @@
-let clicked;
+let clicked; // variable for button click 
 let alarmTime;
-let alarmTriggered = false;
+let alarmTriggered = false; 
 
-function startInterval() {
-  getSeconds(); // Call initially
-  clicked = setInterval(getSeconds, 1000); // Update every second
+function startInterval() { //starts recurring action
+  getSeconds(); //Initial Function
+  clicked = setInterval(getSeconds, 1000); // Updates time every second
 }
 
-function stopInterval() {
-  clearInterval(clicked);
+function stopInterval() { // prevents getSeconds() from repeated execution and alerts
+  clearInterval(clicked); 
 }
 
 function getSeconds() {
   let currentDateTime = new Date();
-  let currentTimestamp = currentDateTime.getTime();
+  let currentTimestamp = currentDateTime.getTime(); // Both give current date and time
   let alarmTimestamp = getAlarmTimestamp();
 
   if (currentTimestamp >= alarmTimestamp && alarmTime && !alarmTriggered) {
@@ -22,22 +22,22 @@ function getSeconds() {
     alert("Alarm triggered!");
   }
 
-  let dateTimeString = currentDateTime.toLocaleString();
-  document.getElementById('demo').textContent = dateTimeString;
+  let dateTimeString = currentDateTime.toLocaleString(); //Turns date and time into a string
+  document.getElementById('demo').textContent = dateTimeString; //updates area below button with correct date and time
 }
 
 function getAlarmTimestamp() {
   const inputElement = document.getElementById('alarmtime');
-  const inputTime = inputElement.value;
-  if (!inputTime) return null;
-  const alarmTimeParts = inputTime.split(':');
-  const currentDate = new Date();
-  const alarmDateTime = new Date(
-    currentDate.getFullYear(),
+  const inputTime = inputElement.value; // gets the value entered in input box
+  if (!inputTime) return null; // if nothing in inputted, return null
+  const alarmTimeParts = inputTime.split(':'); // splits input into hours and minutes
+  const currentDate = new Date(); 
+  const alarmDateTime = new Date( // created a new date object with date and entered alarm time
+    currentDate.getFullYear(), //retrieves this info from currentDate object
     currentDate.getMonth(),
     currentDate.getDate(),
-    parseInt(alarmTimeParts[0]),
-    parseInt(alarmTimeParts[1])
+    parseInt(alarmTimeParts[0]), // converts string of hour back into number
+    parseInt(alarmTimeParts[1]) // converts string of minutes back into number
   );
   return alarmDateTime.getTime();
 }
