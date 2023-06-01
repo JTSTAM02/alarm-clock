@@ -26,7 +26,7 @@ function getSeconds() {
   document.getElementById('demo').textContent = dateTimeString; //updates area below button with correct date and time
 }
 
-function getAlarmTimestamp() {
+function getAlarmTime() {
   const inputElement = document.getElementById('alarmtime');
   const inputTime = inputElement.value; // gets the value entered in input box
   if (!inputTime) return null; // if nothing in inputted, return null
