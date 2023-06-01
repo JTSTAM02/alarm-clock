@@ -1,6 +1,8 @@
 body {
     background-color: silver;
     text-align: center;
+    border: 10px solid black;
+    padding: 20px;
 }
 
 #demo {
@@ -13,8 +15,6 @@ body {
     background-color: rgb(237, 218, 147);
 }
 
-#clock {
-    font-size: 50px;
-    font-weight: bold;
-    text-align: center;
-} 
+.prettybutton, #demo {
+    font-size: 30px;
+}
