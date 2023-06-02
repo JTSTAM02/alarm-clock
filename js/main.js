@@ -1,6 +1,6 @@
 let clicked; // variable for button click 
 let alarmTime;
-let alarmTriggered = false; 
+let alarmTriggered = false; // added to stop recurring alerts
 
 function startInterval() { //starts recurring action
   getSeconds(); //Initial Function
