@@ -3,18 +3,14 @@ body {
     text-align: center;
     border: 10px solid black;
     padding: 20px;
+    font-size: 50px;
 }
 
-#demo {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: rgb(237, 218, 147);
+#clock{
+    font-size: 100px;
 }
 
-.prettybutton {
-    color: black;
-    background-color: rgb(237, 218, 147);
-}
+#stopAlarm{
+    font-size: 80px;
 
-.prettybutton, #demo {
-    font-size: 30px;
 }
