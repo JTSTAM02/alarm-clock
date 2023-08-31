@@ -7,7 +7,7 @@ A simple web-based alarm clock application that allows users to set alarms and g
 - [Features](#features)
 - [Usage](#usage)
 - [Getting Started](#getting-started)
-- [License](#license)
+
 
 ## Features
 
