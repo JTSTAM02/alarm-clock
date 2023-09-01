@@ -1,55 +1,60 @@
-let clicked; // variable for button click 
-let alarmTime;
-let alarmTriggered = false; // added to stop recurring alerts
+const alarm = document.getElementById('alarm');
+const timeDisplay = document.getElementById('time');
+const alarmTimeInput = document.getElementById('alarmTime');
+const setAlarmButton = document.getElementById('setAlarm');
+let alarmTime = null;
 
-function startInterval() { //starts recurring action
-  getSeconds(); //Initial Function
-  clicked = setInterval(getSeconds, 1000); // Updates time every second
-}
+const playAlarm = () => {
+  alarm.play();
+  setTimeout(() => { //sets a timer to schedule a function after specific amount of time has passed
+    alert("Time's up! Alarm is ringing!"); //ensures music begins before alert
+  }, 1000)
+};
 
-function stopInterval() { // prevents getSeconds() from repeated execution and alerts
-  clearInterval(clicked); 
-}
+const stopAlarm = () => {
+  alarm.pause();
+};
 
-function getSeconds() {
-  let currentDateTime = new Date();
-  let currentTimestamp = currentDateTime.getTime(); // Both give current date and time
-  let alarmTimestamp = getAlarmTime();
+//----------------------Format out of Military Time-----------------------------------------------------------------
+const formatTime = (time) => {
+  const [hours, minutes] = time.split(':');
+  return `${parseInt(hours) % 12}:${minutes}`;
+};
 
-  if (currentTimestamp >= alarmTimestamp && alarmTime && !alarmTriggered) {
-    alarmTriggered= true;
-    stopInterval();
-    alert("Alarm triggered!");
+alarmTimeInput.addEventListener('keydown', (event) => {
+  if(event.key === 'Enter'){
+    handleClick();
   }
-
-  let dateTimeString = currentDateTime.toLocaleString(); //Turns date and time into a string
-  document.getElementById('demo').textContent = dateTimeString; //updates area below button with correct date and time
-}
-
-function getAlarmTime() {
-  const inputElement = document.getElementById('alarmtime');
-  const inputTime = inputElement.value; // gets the value entered in input box
-  if (!inputTime) return null; // if nothing in inputted, return null
-  const alarmTimeParts = inputTime.split(':'); // splits input into hours and minutes
-  const currentDate = new Date(); 
-  const alarmDateTime = new Date( // created a new date object with date and entered alarm time
-    currentDate.getFullYear(), //retrieves this info from currentDate object
-    currentDate.getMonth(),
-    currentDate.getDate(),
-    parseInt(alarmTimeParts[0]), // converts string of hour back into number
-    parseInt(alarmTimeParts[1]) // converts string of minutes back into number
-  );
-  return alarmDateTime.getTime();
-}
-
-function setAlarm() {
-  const inputElement = document.getElementById('alarmtime'); // gives the input element for the alarm time
-  alarmTime = inputElement.value; //gets value from input box
-  if (alarmTime) {
-    alarmTriggered = false; 
-    alert("Alarm set for " + alarmTime); //alert that alarm has been set
-  } else {
-    alert("Please enter a valid alarm time.");
+})
+//------------------------Handles Set Alarm button action------------------------------------------------------
+const handleClick = () => {
+  const alarmTimeString = alarmTimeInput.value;
+  if (alarmTimeString) {
+    const formattedTime = formatTime(alarmTimeString);
+    const [hours, minutes] = alarmTimeString.split(':');
+    const now = new Date();
+    alarmTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hours, minutes);
+    alert(`Alarm set for ${formattedTime}`);
   }
-}
+};
+
+
+
+//-----------Handles alarm functionality-------------------------------------------------
+(function updateClock() {
+  const now = new Date(); // gets current date and time
+  timeDisplay.textContent = `${now.toLocaleTimeString('en-US')}`;
+  if (alarmTime && now.getTime() >= alarmTime.getTime()) {
+    playAlarm();
+    alarmTime = null; // ensures no double trigger of alarm
+  }
+  requestAnimationFrame(updateClock);
+})(); // utilization of Immediately Invoked Function Expression (IIFE)
+
+
+// ------------------Event Listeners for Set and Stop Alarm------------------------------------------------------------
+setAlarmButton.addEventListener('click', handleClick);
+
+const stopAlarmButton = document.getElementById('stopAlarm');
+stopAlarmButton.addEventListener('click', stopAlarm);
 

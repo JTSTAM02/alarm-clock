@@ -1,16 +1,30 @@
 body {
     background-color: silver;
+    font-size: 25px;
     text-align: center;
     border: 10px solid black;
-    padding: 20px;
-    font-size: 50px;
-}
+    padding: 10px;
 
-#clock{
-    font-size: 100px;
-}
+  }
+  
+  h1{
+    font-size:50px;
+  }
+  #alarmTime {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    margin-top:10px;
+    margin-bottom: 10px;
+  }
 
-#stopAlarm{
-    font-size: 80px;
-
-}
+  
+  #clock {
+    font-size: 70px;
+    margin-top: 20px;
+  }
+  
+  #stopAlarm {
+    font-size: 60px;
+    margin: 10px;
+  }

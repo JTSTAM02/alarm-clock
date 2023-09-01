@@ -4,45 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Alarm Clock</title>
-<style>
-  body {
-    background-color: silver;
-    font-size: 25px;
-    text-align: center;
-    border: 10px solid black;
-    padding: 10px;
-
-  }
-  
-  h1{
-    font-size:50px;
-  }
-  #alarmTime {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 10px;
-    margin-top:10px;
-    margin-bottom: 10px;
-  }
-
-  
-  #clock {
-    font-size: 70px;
-    margin-top: 20px;
-  }
-  
-  #stopAlarm {
-    font-size: 60px;
-    margin: 10px;
-  }
-</style>
+<link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <h1>Alarm Clock</h1>
   <div>
-    <p>What time would you like your alarm to go off? Please input the time here.
-
-    </p>
+    <p>What time would you like your alarm to go off? Please input the time here.</p>
     <label for="alarmTime">Set Alarm Time: </label>
     <input style="font-size: 40px; max-width: 400px;" type="time" id="alarmTime">
     <button style="font-size: 50px;" id="setAlarm" onkeydown="handleKeyUp()">Set Alarm</button>
@@ -56,72 +23,7 @@
   <button id="stopAlarm">Stop Alarm</button>
 
 
-  <script>
-
-const playAlarm = () => {
-  alarm.play();
-  setTimeout(() =>{
-      alert("Time's up! Alarm is ringing!");
-  }, 1000)
-};
-
-const stopAlarm = () => {
-  alarm.pause();
-};
-    const alarm = document.getElementById('alarm');
-    const timeDisplay = document.getElementById('time');
-    const alarmTimeInput = document.getElementById('alarmTime');
-    const setAlarmButton = document.getElementById('setAlarm');
-    let alarmTime = null;
-
-
-
-    const formatTime = (time) => {
-      const [hours, minutes] = time.split(':');
-      return `${parseInt(hours) % 12}:${minutes}`;
-    };
-
-
-    const handleClickOrEnter = () => {
-    const alarmTimeString = alarmTimeInput.value;
-    if (alarmTimeString) {
-      const formattedTime = formatTime(alarmTimeString);
-      const [hours, minutes] = alarmTimeString.split(':');
-      const now = new Date();
-      alarmTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hours, minutes);
-      alert(`Alarm set for ${formattedTime}`);
-  }
-};
-
-const handleKeyUp = (event) => {
-      if (event.key === "Enter") {
-        handleClickOrEnter();
-      }
-    };
-
-    function updateClock() {
-      const now = new Date();
-      const hours = now.getHours().toString().padStart(2, '0');
-      const minutes = now.getMinutes().toString().padStart(2, '0');
-      const seconds = now.getSeconds().toString().padStart(2, '0');
-      timeDisplay.textContent = `${now.toLocaleTimeString('en-US')}`;
-
-      if (alarmTime && now.getTime() >= alarmTime.getTime()) {
-        playAlarm();
-        alarmTime = null;
-      }
-
-      requestAnimationFrame(updateClock);
-    }
-
-    updateClock();
-
-    setAlarmButton.addEventListener('click', handleClickOrEnter);
-    setAlarmButton.addEventListener('keyup', handleKeyUp);
-
-    const stopAlarmButton = document.getElementById('stopAlarm');
-    stopAlarmButton.addEventListener('click', stopAlarm);
-  </script>
+  <script src="js/main.js"></script>
 </body>
 </html>
 
